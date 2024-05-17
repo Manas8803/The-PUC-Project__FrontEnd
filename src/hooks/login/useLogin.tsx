@@ -15,7 +15,7 @@ const useLogin = () => {
 			throw new Error("Please enter your password.");
 		}
 		try {
-			//! NOT WORKING
+			//! ENV NOT WORKING
 			const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
 				method: "POST",
 				headers: {
@@ -43,7 +43,6 @@ const useLogin = () => {
 						"Oops! Something went wrong. Please try again later."
 					);
 			}
-			// Handle different status codes
 		} catch (error: unknown) {
 			throw error;
 		} finally {
