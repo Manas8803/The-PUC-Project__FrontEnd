@@ -2,7 +2,7 @@
 
 import LoginProtectedRoute from "@/components/auth/LoginProtectedRoute";
 import { useToast } from "@/components/ui/use-toast";
-import { useAuth, useLogin } from "@/hooks";
+import { useAuth } from "@/hooks";
 import logo from "@/public/Brand.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -17,11 +17,7 @@ export default function Login() {
 	const router = useRouter();
 
 	//* Hooks
-	const { isLoading, login } = useLogin();
-	const { isAuthenticated } = useAuth();
-	if (isAuthenticated) {
-		router.back();
-	}
+	const { isLoading, login } = useAuth();
 
 	//* Toast
 	const { toast } = useToast();
