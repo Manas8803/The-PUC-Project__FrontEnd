@@ -1,17 +1,27 @@
 "use client";
 
 import { useToast } from "@/components/ui/use-toast";
-import useLogin from "@/hooks/login/useLogin";
+import { useAuth, useLogin } from "@/hooks";
 import logo from "@/public/Brand.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function LoginPage() {
+	//* Check whether the user is already logged in
+	useEffect(() => {
+		if (isAuthenticated) {
+			router.back();
+		}
+	});
+
 	//* States
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	//* Hooks
 	const { isLoading, login } = useLogin();
+	const { isAuthenticated } = useAuth();
 
 	//* Router
 	const router = useRouter();
@@ -25,7 +35,7 @@ export default function LoginPage() {
 			console.log(email, password);
 
 			await login(email, password);
-			router.push("/");
+			router.push("/home");
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				toast({

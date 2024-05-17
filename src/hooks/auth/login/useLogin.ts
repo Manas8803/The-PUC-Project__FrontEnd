@@ -1,8 +1,10 @@
+"use client";
 import { useState } from "react";
+import useAuth from "../useAuth";
 const useLogin = () => {
-	const baseUrl = process.env.AUTH_URL; //!!!
-
+	const baseUrl = process.env.NEXT_PUBLIC_AUTH_URL;
 	const [isLoading, setIsLoading] = useState(false);
+	const { setIsAuthenticated } = useAuth();
 
 	const login = async (email: string, password: string) => {
 		setIsLoading(true);
@@ -15,7 +17,6 @@ const useLogin = () => {
 			throw new Error("Please enter your password.");
 		}
 		try {
-			//! ENV NOT WORKING
 			const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
 				method: "POST",
 				headers: {
@@ -29,8 +30,8 @@ const useLogin = () => {
 					const jsonData = await response.json();
 					const token = jsonData.data.token.split("Bearer ")[1];
 					console.log(token);
-
 					localStorage.setItem("token", token);
+					setIsAuthenticated(true);
 					break;
 				case 401:
 					throw new Error(
