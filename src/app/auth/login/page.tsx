@@ -1,30 +1,27 @@
 "use client";
 
+import LoginProtectedRoute from "@/components/auth/LoginProtectedRoute";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth, useLogin } from "@/hooks";
 import logo from "@/public/Brand.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-export default function LoginPage() {
-	//* Check whether the user is already logged in
-	useEffect(() => {
-		if (isAuthenticated) {
-			router.back();
-		}
-	});
-
+export default function Login() {
 	//* States
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	//* Router
+	const router = useRouter();
+
 	//* Hooks
 	const { isLoading, login } = useLogin();
 	const { isAuthenticated } = useAuth();
-
-	//* Router
-	const router = useRouter();
+	if (isAuthenticated) {
+		router.back();
+	}
 
 	//* Toast
 	const { toast } = useToast();
@@ -32,8 +29,6 @@ export default function LoginPage() {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			console.log(email, password);
-
 			await login(email, password);
 			router.push("/home");
 		} catch (error: unknown) {
@@ -49,59 +44,61 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-100">
-			<div className="max-w-md mx-auto bg-white p-8 shadow-md">
-				<div className="mb-6">
-					<Image
-						src={logo}
-						width={139}
-						height={90}
-						alt="The PUC project"
-						className="mx-auto"
-					/>
-				</div>
-				<form onSubmit={handleSubmit}>
-					<div className="mb-4">
-						<label
-							htmlFor="username"
-							className="block text-gray-700 font-bold mb-2"
-						>
-							Username
-						</label>
-						<input
-							type="email"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							placeholder="Enter your email"
-							className="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-						/>
-					</div>
+		<LoginProtectedRoute>
+			<div className="flex justify-center items-center min-h-screen bg-gray-100">
+				<div className="max-w-md mx-auto bg-white p-8 shadow-md">
 					<div className="mb-6">
-						<label
-							htmlFor="password"
-							className="block text-gray-700 font-bold mb-2"
-						>
-							Password
-						</label>
-						<input
-							type="password"
-							value={password}
-							placeholder="Enter your password"
-							onChange={(e) => setPassword(e.target.value)}
-							className="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+						<Image
+							src={logo}
+							width={139}
+							height={90}
+							alt="The PUC project"
+							className="mx-auto"
 						/>
 					</div>
-					<div className="flex justify-center">
-						<button
-							type="submit"
-							disabled={isLoading}
-							className="bg-green-500 hover:bg-blue-700 text-white font-bold border rounded-2xl w-full py-2 px-4 focus:outline-none focus:shadow-outline"
-						>
-							{isLoading ? "Logging in..." : "Login"}
-						</button>
-					</div>
-				</form>
+					<form onSubmit={handleSubmit}>
+						<div className="mb-4">
+							<label
+								htmlFor="username"
+								className="block text-gray-700 font-bold mb-2"
+							>
+								Username
+							</label>
+							<input
+								type="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								placeholder="Enter your email"
+								className="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							/>
+						</div>
+						<div className="mb-6">
+							<label
+								htmlFor="password"
+								className="block text-gray-700 font-bold mb-2"
+							>
+								Password
+							</label>
+							<input
+								type="password"
+								value={password}
+								placeholder="Enter your password"
+								onChange={(e) => setPassword(e.target.value)}
+								className="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							/>
+						</div>
+						<div className="flex justify-center">
+							<button
+								type="submit"
+								disabled={isLoading}
+								className="bg-green-500 hover:bg-blue-700 text-white font-bold border rounded-2xl w-full py-2 px-4 focus:outline-none focus:shadow-outline"
+							>
+								{isLoading ? "Logging in..." : "Login"}
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
-		</div>
+		</LoginProtectedRoute>
 	);
 }

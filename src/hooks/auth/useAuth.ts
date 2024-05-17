@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState, Dispatch, SetStateAction, useEffect } from "react";
 
 interface AuthHookReturn {
@@ -11,10 +12,10 @@ const useAuth = (): AuthHookReturn => {
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
 	useEffect(() => {
-		const accessToken = localStorage.getItem("token");
+		const token = localStorage.getItem("token");
 
-		if (accessToken) {
-			setIsAuthenticated(true);
+		if (!token) {
+			setIsAuthenticated(false);
 		}
 	}, []);
 

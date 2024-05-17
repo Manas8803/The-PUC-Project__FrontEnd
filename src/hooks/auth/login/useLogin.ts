@@ -1,21 +1,24 @@
-"use client";
 import { useState } from "react";
 import useAuth from "../useAuth";
+
 const useLogin = () => {
+	const { setIsAuthenticated } = useAuth();
 	const baseUrl = process.env.NEXT_PUBLIC_AUTH_URL;
 	const [isLoading, setIsLoading] = useState(false);
-	const { setIsAuthenticated } = useAuth();
 
 	const login = async (email: string, password: string) => {
 		setIsLoading(true);
+
 		if (email === "") {
 			setIsLoading(false);
 			throw new Error("Please enter your email address.");
 		}
+
 		if (password === "") {
 			setIsLoading(false);
 			throw new Error("Please enter your password.");
 		}
+
 		try {
 			const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
 				method: "POST",
@@ -29,9 +32,7 @@ const useLogin = () => {
 				case 200:
 					const jsonData = await response.json();
 					const token = jsonData.data.token.split("Bearer ")[1];
-					console.log(token);
 					localStorage.setItem("token", token);
-					setIsAuthenticated(true);
 					break;
 				case 401:
 					throw new Error(

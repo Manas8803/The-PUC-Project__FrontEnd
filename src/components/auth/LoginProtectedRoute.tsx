@@ -3,15 +3,15 @@ import { ReactElement, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
-export default function ProtectedRoute({
+export default function LoginProtectedRoute({
 	children,
 }: {
 	children: ReactElement;
 }) {
 	useEffect(() => {
 		const token = window.localStorage.getItem("token");
-		if (!token) {
-			router.push("/auth/login");
+		if (token) {
+			router.back();
 		}
 	});
 	const router = useRouter();
