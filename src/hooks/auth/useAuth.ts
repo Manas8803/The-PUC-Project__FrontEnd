@@ -1,7 +1,9 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const useAuth = () => {
 	const baseUrl = process.env.NEXT_PUBLIC_AUTH_URL;
+	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const login = async (email: string, password: string) => {
@@ -30,6 +32,8 @@ const useAuth = () => {
 				case 200:
 					const jsonData = await response.json();
 					const token = jsonData.data.token.split("Bearer ")[1];
+					const officeName = jsonData.data.office_name;
+					localStorage.setItem("officeName", officeName);
 					localStorage.setItem("token", token);
 					break;
 				case 401:
@@ -51,9 +55,11 @@ const useAuth = () => {
 	};
 	const logout = () => {
 		localStorage.removeItem("token");
+		localStorage.removeItem("officeName");
+		router.push("/auth/login");
 	};
 
-	return { isLoading, login };
+	return { isLoading, login, logout };
 };
 
 export default useAuth;

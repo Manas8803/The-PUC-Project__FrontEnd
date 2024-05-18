@@ -8,13 +8,13 @@ export default function ProtectedRoute({
 }: {
 	children: ReactElement;
 }) {
+	const router = useRouter();
 	useEffect(() => {
 		const token = window.localStorage.getItem("token");
 		if (!token) {
 			router.push("/auth/login");
 		}
-	});
-	const router = useRouter();
+	}, [router]);
 
 	return children;
 }
