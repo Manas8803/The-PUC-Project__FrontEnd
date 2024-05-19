@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const useAuth = () => {
+export default function useAuth() {
 	const baseUrl = process.env.NEXT_PUBLIC_AUTH_URL;
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +60,4 @@ const useAuth = () => {
 	};
 
 	return { isLoading, login, logout };
-};
-
-export default useAuth;
+}

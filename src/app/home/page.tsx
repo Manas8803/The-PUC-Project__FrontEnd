@@ -1,17 +1,24 @@
+"use client";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import Reports from "./components/report-section";
-import MenuBar from "@/components/ui/menubar";
+import MainLayout from "@/components/ui/MainLayout";
+import { useState } from "react";
+import Reports from "./components/puc_alert_section";
+import SearchBar from "./components/search_bar";
 
 export default function Home() {
+	const [searchQuery, setSearchQuery] = useState("");
+
+	const handleSearch = (query: string) => {
+		setSearchQuery(query);
+	};
 	return (
 		<ProtectedRoute>
-			{/* //! Remove padding bottom */}
-			<main className="flex flex-col bg-bgrnd relative pb-10 mb-[12svh]">
-				Home Page
-				{/* SearchBar */}
-				<Reports />
-				<MenuBar />
-			</main>
+			<MainLayout>
+				<>
+					<SearchBar onSearch={handleSearch} />
+					<Reports searchQuery={searchQuery} />
+				</>
+			</MainLayout>
 		</ProtectedRoute>
 	);
 }

@@ -71,7 +71,8 @@ export default function Login() {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								placeholder="you@example.com"
-								className="shadow appearance-none border rounded-2xl w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+								className="shadow appearance-none border rounded-2xl w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								required
 							/>
 						</div>
 						<div className="mb-6">
@@ -87,13 +88,14 @@ export default function Login() {
 								placeholder="•••••••••••"
 								onChange={(e) => setPassword(e.target.value)}
 								className="shadow appearance-none border rounded-2xl w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								required
 							/>
 						</div>
 						<div className="flex justify-center">
 							<button
 								type="submit"
 								disabled={isLoading}
-								className="bg-green-500 hover:bg-green-700 text-white font-bold border rounded-2xl w-full py-2 px-4 focus:outline-none focus:shadow-outline"
+								className="bg-main hover:bg-side text-white font-bold border rounded-2xl w-full py-3 px-4 focus:outline-none focus:shadow-outline"
 							>
 								{isLoading ? "Logging in..." : "Login"}
 							</button>

@@ -12,9 +12,13 @@ const config = {
 	theme: {
 		colors: {
 			bgrnd: "#F5F5F5",
-			primary: "#7CC558",
+			main: "#7CC558",
+			side: "#4e7a37",
 			white: "#FFFFFF",
 			black: "#000000",
+			test_1: " #00FF00",
+			test_2: " #FF0000",
+			test_3: " #0000FF",
 		},
 		container: {
 			center: true,
