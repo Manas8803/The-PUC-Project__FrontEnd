@@ -8,7 +8,6 @@ export const useReportsData = () => {
 	useEffect(() => {
 		if (typeof window !== "undefined") { 
 			setOfficeName(localStorage.getItem('officeName'))
-			return
 		}
 		let socket: WebSocket | null = null;
 

@@ -3,7 +3,7 @@
 import LoginProtectedRoute from "@/components/auth/LoginProtectedRoute";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks";
-import logo from "@/public/Brand.svg";
+import logo from "@/public/Brand.webp";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -48,13 +48,13 @@ export default function Login() {
 	return (
 		<LoginProtectedRoute>
 			<div className="flex justify-center items-center min-h-screen bg-gray-200">
-				<div className="max-w-full mx-auto bg-white p-8 shadow-xl rounded-2xl">
+				<div className="max-w-full mx-auto bg-white p-8 shadow-2xl rounded-2xl border-black border-[0.5px]">
 					<div className="mb-6">
 						<Image
 							src={logo}
 							width={139}
 							height={90}
-							alt="The PUC project"
+							alt="The PUC Project logo"
 							className="mx-auto"
 						/>
 					</div>

@@ -1,4 +1,4 @@
-import search_icon from "@/public/search-icon.svg";
+import search_icon from "@/public/search-icon.webp";
 import Image from "next/image";
 import React from "react";
 
