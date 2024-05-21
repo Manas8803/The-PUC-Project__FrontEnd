@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/index";
 import Link from "next/link";
 
 export default function Home() {
-	const { logout } = useAuth(); // Call useAuth and store the returned function
+	const { logout } = useAuth(); 
 
 	return (
 		<main className="pl-10">

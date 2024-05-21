@@ -47,7 +47,7 @@ export default function Login() {
 
 	return (
 		<LoginProtectedRoute>
-			<div className="flex justify-center items-center min-h-screen bg-gray-200">
+			<div className="flex justify-center items-center min-h-screen bg-gray-200 overflow-hidden h-[100%]">
 				<div className="max-w-full mx-auto bg-white p-8 shadow-2xl rounded-2xl border-black border-[0.5px]">
 					<div className="mb-6">
 						<Image

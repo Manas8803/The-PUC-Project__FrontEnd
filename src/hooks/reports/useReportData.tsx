@@ -1,36 +1,33 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { CardData, cardData } from "@/lib/data";
 export const useReportsData = () => {
-	const [officeName, setOfficeName] = useState<string | null>(null)
-	const [reportsData, setReportsData] = useState<string[]>([]);
-	
-	useEffect(() => {
-		if (typeof window !== "undefined") { 
-			setOfficeName(localStorage.getItem('officeName'))
-		}
-		let socket: WebSocket | null = null;
+	const [officeName, setOfficeName] = useState<string | null>(null);
+	const [reportsData, setReportsData] = useState<CardData[]>(cardData);
 
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			setOfficeName(localStorage.getItem("officeName"));
+		}
 		const connectWebSocket = () => {
 			try {
-				socket = new WebSocket(
-					`wss://8igcbtgefa.execute-api.ap-south-1.amazonaws.com/prod?office_name=${officeName}`
-				);
+				const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL;
+				const socket = new WebSocket(`${socketUrl}${officeName}`);
 
 				socket.addEventListener("open", () => {
 					console.log("WebSocket connection established");
 				});
 
 				socket.addEventListener("message", (event) => {
-					console.log("A MESSAGE IS RECEIVED: ", event.data);
-					setReportsData((prevData) => [...prevData, event.data]);
+					console.log("A MESSAGE IS RECEIVED: ", JSON.parse(event.data));
+					setReportsData((prevData) => [...prevData, JSON.parse(event.data)]);
 				});
 
 				socket.addEventListener("error", (error) => {
 					console.error("WebSocket error:", error);
 				});
 			} catch (error) {
-				console.error("Error connecting to WebSocket:", error);
+				// console.log("Error connecting to WebSocket:", error);
 			}
 		};
 

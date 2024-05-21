@@ -29,6 +29,24 @@ const config = {
 		},
 
 		extend: {
+			transitionDelay: {
+				"0": "0ms",
+				"400": "400ms",
+				"600": "600ms",
+				"2000": "2000ms",
+				"5000": "5000ms",
+			},
+			transitionProperty: {
+				height: "height",
+				display: "display",
+			},
+			transitionDuration: {
+				"0": "0ms",
+				"400": "400ms",
+				"600": "600ms",
+				"2000": "2000ms",
+				"5000": "5000ms",
+			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
