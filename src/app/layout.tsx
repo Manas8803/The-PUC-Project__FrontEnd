@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Transition from "@/components/framer/Transition";
 
 const poppins = Poppins({
 	subsets: ["devanagari"],
@@ -22,7 +23,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={poppins.className}>
-				<main>{children}</main>
+				<main>
+					<Transition>{children}</Transition>
+				</main>
 				<Toaster />
 			</body>
 		</html>

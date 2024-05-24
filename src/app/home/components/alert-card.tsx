@@ -1,8 +1,10 @@
-import { useState } from "react";
-import dropdown_icon from "@/public/dropdown-icon.webp";
-import Image from "next/image";
 import { CardData } from "@/lib/data";
-
+import dropdown_icon from "@/public/dropdown-icon.webp";
+import indicator_green from "@/public/indicator-green.webp";
+import indicator_red from "@/public/indicator-red.webp";
+import Image from "next/image";
+import { useState } from "react";
+import { m, stagger } from "framer-motion";
 export default function AlertCard({
 	office_name,
 	pucStatus,
@@ -17,21 +19,33 @@ export default function AlertCard({
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<div
+		<m.div
 			className={`mt-3 w-[83.333%] mx-auto ${
 				pucStatus === "Valid"
 					? "bg-gradient-to-r from-white to-main"
-					: "bg-gradient-to-r from-white to-red-500"
+					: "bg-gradient-to-r from-gr_white to-gr_red"
 			} rounded-3xl p-4 shadow-lg text-black duration-600 transition-display ease-in-out transform`}
+			whileTap={{ scale: 0.93 }}
+			whileHover={{ scale: 1.03 }}
+			whileInView={{
+				x: [-20, 0],
+				transition: { ease: "easeInOut", duration: 0.8 },
+			}}
 			onClick={() => setIsOpen(!isOpen)}
 		>
 			<div className="flex items-center justify-between mb-4">
-				<div className="flex items-center">
-					<div
-						className={`${
-							pucStatus === "Valid" ? "bg-green-400" : "bg-red-400"
-						} rounded-full p-1 sm:p-2`}
-					></div>
+				<div className="flex items-center gap-2">
+					<Image
+						src={pucStatus === "Valid" ? indicator_green : indicator_red}
+						width={10}
+						height={10}
+						alt="indicator"
+					/>
+					<p>
+						{pucStatus === "Valid"
+							? "PUC is valid"
+							: "Seems the PUC is outdated!"}
+					</p>
 				</div>
 				<div
 					className={`cursor-pointer transform transition duration-500 ease-in-out rounded-lg ${
@@ -46,9 +60,7 @@ export default function AlertCard({
 			<p className="font-normal pl-2 mb-2">{vehicleModel}</p>
 			<div
 				className={`overflow-hidden transition-all ease-in-out delay-0 ${
-					isOpen
-						? "max-h-screen duration-1000"
-						: "max-h-0 duration-400"
+					isOpen ? "max-h-screen duration-1000" : "max-h-0 duration-400"
 				}`}
 			>
 				<div className="pl-2">
@@ -75,6 +87,6 @@ export default function AlertCard({
 					</p>
 				</div>
 			</div>
-		</div>
+		</m.div>
 	);
 }

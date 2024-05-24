@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -7,7 +7,7 @@ export default function useAuth() {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const login = async (email: string, password: string) => {
+	async function login(email: string, password: string) {
 		setIsLoading(true);
 
 		if (email === "") {
@@ -53,12 +53,12 @@ export default function useAuth() {
 		} finally {
 			setIsLoading(false);
 		}
-	};
-	const logout = () => {
+	}
+	function logout() {
 		localStorage.removeItem("token");
 		localStorage.removeItem("officeName");
 		router.push("/auth/login");
-	};
+	}
 
 	return { isLoading, login, logout };
 }

@@ -13,6 +13,8 @@ const config = {
 		colors: {
 			bgrnd: "#F5F5F5",
 			main: "#7CC558",
+			gr_white: "#FCEBED",
+			gr_red: "#FF4848",
 			side: "#4e7a37",
 			white: "#FFFFFF",
 			black: "#000000",

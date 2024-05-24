@@ -1,5 +1,6 @@
 import { useReportsData } from "@/hooks/reports/useReportData";
 import { CardData } from "@/lib/data";
+import { LazyMotion, domAnimation, m, stagger } from "framer-motion";
 import AlertCard from "./alert-card";
 
 interface ReportsProps {
@@ -27,21 +28,23 @@ export default function Reports({ searchQuery }: ReportsProps) {
 	});
 
 	return (
-		<section>
-			{filteredData.map((report: CardData, index: number) => (
-				<AlertCard
-					key={index}
-					office_name=""
-					pucStatus={report.pucStatus}
-					vehicleType={report.vehicleType}
-					validUpto={report.validUpto}
-					registrationNo={report.registrationNo}
-					vehicleModel={report.vehicleModel}
-					vehicleDescription={report.vehicleDescription}
-					contact={report.contact}
-					pucValidUpto={report.pucValidUpto}
-				/>
-			))}
-		</section>
+		<LazyMotion features={domAnimation}>
+			<section className="h-full pb-5">
+				{filteredData.map((report: CardData, index: number) => (
+					<AlertCard
+						key={index}
+						office_name=""
+						pucStatus={report.pucStatus}
+						vehicleType={report.vehicleType}
+						validUpto={report.validUpto}
+						registrationNo={report.registrationNo}
+						vehicleModel={report.vehicleModel}
+						vehicleDescription={report.vehicleDescription}
+						contact={report.contact}
+						pucValidUpto={report.pucValidUpto}
+					/>
+				))}
+			</section>
+		</LazyMotion>
 	);
 }
