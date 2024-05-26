@@ -2,6 +2,7 @@
 import { ReactElement, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
+import { toast } from "../ui/use-toast";
 
 export default function LoginProtectedRoute({
 	children,
@@ -13,6 +14,10 @@ export default function LoginProtectedRoute({
 		const token = localStorage.getItem("token");
 
 		if (token) {
+			toast({
+				variant: "normal",
+				title: "Already logged in",
+			});
 			router.back();
 			return;
 		}

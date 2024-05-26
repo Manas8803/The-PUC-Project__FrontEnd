@@ -2,11 +2,10 @@ import { CardData } from "@/lib/data";
 import dropdown_icon from "@/public/dropdown-icon.webp";
 import indicator_green from "@/public/indicator-green.webp";
 import indicator_red from "@/public/indicator-red.webp";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { m, stagger } from "framer-motion";
 export default function AlertCard({
-	office_name,
 	pucStatus,
 	vehicleType,
 	validUpto,
@@ -29,7 +28,7 @@ export default function AlertCard({
 			whileHover={{ scale: 1.03 }}
 			whileInView={{
 				x: [-20, 0],
-				transition: { ease: "easeInOut", duration: 0.8 },
+				transition: { ease: "easeInOut", duration: 0.3 },
 			}}
 			onClick={() => setIsOpen(!isOpen)}
 		>
@@ -53,36 +52,36 @@ export default function AlertCard({
 					}`}
 					onClick={() => setIsOpen(!isOpen)}
 				>
-					<Image src={dropdown_icon} alt="dropdown" width={20} height={20} />
+					<Image src={dropdown_icon} alt="dropdown" width={30} height={30} />
 				</div>
 			</div>
 			<h1 className="text-xl font-bold pl-2">{registrationNo}</h1>
 			<p className="font-normal pl-2 mb-2">{vehicleModel}</p>
 			<div
 				className={`overflow-hidden transition-all ease-in-out delay-0 ${
-					isOpen ? "max-h-screen duration-1000" : "max-h-0 duration-400"
+					isOpen ? "max-h-screen duration-700" : "max-h-0 duration-400"
 				}`}
 			>
-				<div className="pl-2">
-					<p className="font-extralight">
+				<div className="pl-2 font-extralight">
+					<p>
 						Registration No.: &nbsp;<strong>{registrationNo}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						Vehicle Model: &nbsp;<strong>{vehicleModel}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						Vehicle Description: &nbsp;<strong>{vehicleDescription}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						Vehicle Type: &nbsp;<strong>{vehicleType}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						Contact: &nbsp;<strong>{contact}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						Valid Upto: &nbsp;<strong>{pucValidUpto}</strong>
 					</p>
-					<p className="font-extralight">
+					<p>
 						PUC Valid: &nbsp;<strong>{validUpto}</strong>
 					</p>
 				</div>

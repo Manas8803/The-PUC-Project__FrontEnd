@@ -1,8 +1,8 @@
+import Transition from "@/components/framer/Transition";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Transition from "@/components/framer/Transition";
 
 const poppins = Poppins({
 	subsets: ["devanagari"],

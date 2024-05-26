@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 export default function Transition({
 	children,
