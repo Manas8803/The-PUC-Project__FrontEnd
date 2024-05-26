@@ -52,7 +52,7 @@ export default function AlertCard({
 					}`}
 					onClick={() => setIsOpen(!isOpen)}
 				>
-					<Image src={dropdown_icon} alt="dropdown" width={30} height={30} />
+					<Image src={dropdown_icon} alt="dropdown" width={20} height={20} />
 				</div>
 			</div>
 			<h1 className="text-xl font-bold pl-2">{registrationNo}</h1>
