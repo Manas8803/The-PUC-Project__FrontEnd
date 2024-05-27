@@ -21,6 +21,7 @@ export default function MenuBar() {
 				<Link href={"/home"}>
 					<Image
 						width={imgSize}
+						height={imgSize}
 						src={currentRoute === "/home" ? home_icon_active : home_icon}
 						alt="home-icon"
 					/>
@@ -31,6 +32,7 @@ export default function MenuBar() {
 				<Link href={"/dashboard"}>
 					<Image
 						width={imgSize}
+						height={imgSize}
 						src={
 							currentRoute === "/dashboard"
 								? dashboard_icon_active
@@ -45,6 +47,7 @@ export default function MenuBar() {
 				<Link href={"/reports"}>
 					<Image
 						width={imgSize}
+						height={imgSize}
 						src={currentRoute === "/reports" ? report_icon_active : report_icon}
 						alt="report-icon"
 					/>
