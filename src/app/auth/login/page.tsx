@@ -3,7 +3,7 @@
 import LoginProtectedRoute from "@/components/auth/LoginProtectedRoute";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/hooks";
-import logo from "@/public/Brand.webp";
+import logo from "@/public/logo.webp";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

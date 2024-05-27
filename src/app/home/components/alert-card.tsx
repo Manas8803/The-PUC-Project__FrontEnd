@@ -1,7 +1,7 @@
 import { CardData } from "@/lib/data";
-import dropdown_icon from "@/public/dropdown-icon.webp";
-import indicator_green from "@/public/indicator-green.webp";
-import indicator_red from "@/public/indicator-red.webp";
+import dropdown_icon from "@/public/home/alert-card/dropdown-icon.webp";
+import indicator_green from "@/public/home/alert-card/indicator-green.webp";
+import indicator_red from "@/public/home/alert-card/indicator-red.webp";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";

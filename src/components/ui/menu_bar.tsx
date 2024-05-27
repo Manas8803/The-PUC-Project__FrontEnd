@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import home_icon from "@/public/home-icon.webp";
-import home_icon_active from "@/public/home-icon-active.webp";
-import dashboard_icon from "@/public/dashboard-icon.webp";
-import dashboard_icon_active from "@/public/dashboard-icon-active.webp";
-import report_icon from "@/public/report-icon.webp";
-import report_icon_active from "@/public/report-icon-active.webp";
+import home_icon from "@/public/home/menubar/home-icon.webp";
+import home_icon_active from "@/public/home/menubar/home-icon-active.webp";
+import dashboard_icon from "@/public/home/menubar/dashboard-icon.webp";
+import dashboard_icon_active from "@/public/home/menubar/dashboard-icon-active.webp";
+import report_icon from "@/public/home/menubar/report-icon.webp";
+import report_icon_active from "@/public/home/menubar/report-icon-active.webp";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useWindowSize from "@/hooks/window_size/useWindowSize";

@@ -25,12 +25,10 @@ export const useReportsData = () => {
 						setReportsData((prevData) => [...prevData, JSON.parse(event.data)]);
 					});
 					socket.addEventListener("error", (error) => {
-						console.error("WebSocket error:", error.currentTarget);
+						// console.error("WebSocket error:", error.currentTarget);
 					});
 				}
-			} catch (error) {
-				console.log("Error connecting to WebSocket:", error);
-			}
+			} catch (error) {}
 		};
 
 		connectWebSocket();
@@ -38,7 +36,6 @@ export const useReportsData = () => {
 		return () => {
 			if (socket) {
 				socket.close();
-				console.log("WebSocket disconnected");
 			}
 		};
 	}, [isBrowser]);

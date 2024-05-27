@@ -5,14 +5,13 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 	aggressiveFrontEndNavCaching: true,
 	reloadOnOnline: true,
 	swcMinify: true,
-	disable: process.env.NODE_ENV === "development",
+	disable: true,
 	workboxOptions: {
 		disableDevLogs: true,
 	},
+	// ... other options you like
 });
-
 dotenv.config();
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
