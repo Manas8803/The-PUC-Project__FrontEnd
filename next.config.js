@@ -8,8 +8,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 	disable: false,
 	workboxOptions: {
 		disableDevLogs: true,
-	},
-	// ... other options you like
+	}, 
 });
 dotenv.config();
 /** @type {import('next').NextConfig} */
